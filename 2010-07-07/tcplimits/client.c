@@ -23,9 +23,10 @@ int main( int argc, char* argv[] ) {
 	int i;
 	char* addr = argv[1];
 	int port = atoi( argv[2] );
+	int connections = atoi( argv[3] );
 	doinit();
 	
-	for( i=0; i < 15000; i++ ) {
+	for( i=0; i < connections; i++ ) {
 		sock = dosocket();	
 		if( doconnect( sock, addr, port ) > 0 ) break;
 		printf( "connection number %i\n", i );
