@@ -1,11 +1,11 @@
 #include <windows.h>
 #include "common.h"
 
-int dobind( SOCKET m_socket ) {
+int dobind( SOCKET m_socket, char* in_addr, int in_port ) {
 	struct sockaddr_in service;
 	service.sin_family = AF_INET;
-	service.sin_addr.s_addr = inet_addr("127.0.0.1");
-	service.sin_port = htons(55555);
+	service.sin_addr.s_addr = inet_addr( in_addr );
+	service.sin_port = htons( in_port );
 
 	if( bind( m_socket, (SOCKADDR*)&service, sizeof(service)) == SOCKET_ERROR ) {
 	    printf( "bind() failed: %ld.\n", WSAGetLastError() );
@@ -40,11 +40,14 @@ void doaccept( SOCKET in_socket ) {
 	}
 }
 
-int main() {
+int main( int argc, char* argv[] ) {
+	char* addr = argv[1];
+	int port = atoi( argv[2] );
+
 	SOCKET sock;
 	doinit();
 	sock = dosocket();
-	dobind( sock );
+	dobind( sock, addr, port );
 	dolisten( sock );
 	while( 1 ) {
 		doaccept( sock );
