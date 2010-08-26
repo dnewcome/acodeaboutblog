@@ -11,7 +11,7 @@ syntax it would look something like this:
 
     {{.*}}
 
-Those of you that are taking notes will probably recongnized some problems with this expression, even though it
+Those of you that are taking notes will probably recongnize some problems with this expression, even though it
 will ostensibly match the form we laid out above.
 
 Before I go any further into this example, I want to introduce a small tool that I wrote a while ago to test out
